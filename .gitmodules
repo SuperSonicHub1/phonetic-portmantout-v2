@@ -1,0 +1,3 @@
+[submodule "lexconvert"]
+	path = lexconvert
+	url = https://github.com/ssb22/lexconvert
