@@ -3,8 +3,8 @@ from .cmutils import is_vowel
 from typing import Iterable
 
 def join(a: Iterable[str], b: Iterable[str]) -> Iterable[str] | None:
-	sequence_matcher = SequenceMatcher(a=a, b=b)
-	blocks = sequence_matcher.get_matching_blocks()
+	matcher = SequenceMatcher(a=a, b=b)
+	blocks = matcher.get_matching_blocks()
 	blocks_with_vowels = [
 		block 
 		for block 
@@ -20,28 +20,23 @@ def join(a: Iterable[str], b: Iterable[str]) -> Iterable[str] | None:
 		return None
 	
 	block = max(blocks_with_vowels, key=lambda block: block.size)
+	size = block.size
 
-	if block.size == 1:
-		return a if len(a) > len(b) else b
-	if block.a + block.size == len(a) and block.b == 0:
+	# Infixes
+	if size == len(a):
+		return b
+	elif size == len(b):
+		return a
+	# Edges
+	elif block.a + size == len(a) and block.b == 0:
 		return a[:block.a] + b
-	elif block.b + block.size == len(b) and block.a == 0:
-		return b[:block.b] + a
-	elif block.a + block.size == len(a) and len(a) < len(b):
-		return a + b[block.b + block.size:]
-	elif block.b + block.size == len(b) and len(b) < len(a):
-		return b + a[block.a + block.size:]
-	elif block.a > 0:
-		return a[:block.a] + b
-	elif block.b > 0:
+	elif block.b + size == len(b) and block.a == 0:
 		return b[:block.b] + a
 	else:
-		raise Exception(f"Having a hard time joining these: {a=}, {b=}, {block=}")
+		# print(f"{a=}, {b=}, {block=}")
+		return None
 
 if __name__ == "__main__":
-	"""
-	"""
-
 	def test_join(a: str, b: str) -> None:
 		result_a_b = join(a, b)
 		result_b_a = join(b, a)
@@ -50,9 +45,10 @@ if __name__ == "__main__":
 		except AssertionError:
 			print(result_a_b, result_b_a)
 			raise e
-		print(*result_a_b)
+		print(result_a_b)
 
 	# Classic portmanteaus
+	# These don't match because we don't get a longer word.
 	peaceful = "P IY S F AH L".split(" ")
 	cease = "S IY S".split(" ")
 	test_join(peaceful, cease)
