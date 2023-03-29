@@ -1,0 +1,162 @@
+% Version 1.2 of SN LaTeX, November 2022
+%
+% See section 11 of the User Manual for version history 
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                 %%
+%% Please do not use \input{...} to include other tex files.       %%
+%% Submit your LaTeX manuscript as one .tex document.              %%
+%%                                                                 %%
+%% All additional figures and files should be attached             %%
+%% separately and not embedded in the \TeX\ document itself.       %%
+%%                                                                 %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%\documentclass[referee,sn-basic]{sn-jnl}% referee option is meant for double line spacing
+
+%%=======================================================%%
+%% to print line numbers in the margin use lineno option %%
+%%=======================================================%%
+
+%%\documentclass[lineno,sn-basic]{sn-jnl}% Basic Springer Nature Reference Style/Chemistry Reference Style
+
+%%======================================================%%
+%% to compile with pdflatex/xelatex use pdflatex option %%
+%%======================================================%%
+
+%%\documentclass[pdflatex,sn-basic]{sn-jnl}% Basic Springer Nature Reference Style/Chemistry Reference Style
+
+
+%%Note: the following reference styles support Namedate and Numbered referencing. By default the style follows the most common style. To switch between the options you can add or remove Numbered in the optional parenthesis. 
+%%The option is available for: sn-basic.bst, sn-vancouver.bst, sn-chicago.bst, sn-mathphys.bst. %  
+ 
+%%\documentclass[sn-nature]{sn-jnl}% Style for submissions to Nature Portfolio journals
+%%\documentclass[sn-basic]{sn-jnl}% Basic Springer Nature Reference Style/Chemistry Reference Style
+\documentclass[sn-mathphys,Numbered]{sn-jnl}% Math and Physical Sciences Reference Style
+%%\documentclass[sn-aps]{sn-jnl}% American Physical Society (APS) Reference Style
+%%\documentclass[sn-vancouver,Numbered]{sn-jnl}% Vancouver Reference Style
+%%\documentclass[sn-apa]{sn-jnl}% APA Reference Style 
+%%\documentclass[sn-chicago]{sn-jnl}% Chicago-based Humanities Reference Style
+%%\documentclass[default]{sn-jnl}% Default
+%%\documentclass[default,iicol]{sn-jnl}% Default with double column layout
+
+%%%% Standard Packages
+%%<additional latex packages if required can be included here>
+
+\usepackage{graphicx}%
+\usepackage{multirow}%
+\usepackage{amsmath,amssymb,amsfonts}%
+\usepackage{amsthm}%
+\usepackage{mathrsfs}%
+\usepackage[title]{appendix}%
+\usepackage{xcolor}%
+\usepackage{textcomp}%
+\usepackage{manyfoot}%
+\usepackage{booktabs}%
+\usepackage{algorithm}%
+\usepackage{algorithmicx}%
+\usepackage{algpseudocode}%
+\usepackage{listings}%
+%%%%
+
+%%%%%=============================================================================%%%%
+%%%%  Remarks: This template is provided to aid authors with the preparation
+%%%%  of original research articles intended for submission to journals published 
+%%%%  by Springer Nature. The guidance has been prepared in partnership with 
+%%%%  production teams to conform to Springer Nature technical requirements. 
+%%%%  Editorial and presentation requirements differ among journal portfolios and 
+%%%%  research disciplines. You may find sections in this template are irrelevant 
+%%%%  to your work and are empowered to omit any such section if allowed by the 
+%%%%  journal you intend to submit to. The submission guidelines and policies 
+%%%%  of the journal take precedence. A detailed User Manual is available in the 
+%%%%  template package for technical guidance.
+%%%%%=============================================================================%%%%
+
+%\jyear{2021}%
+
+%% as per the requirement new theorem styles can be included as shown below
+\theoremstyle{thmstyleone}%
+\newtheorem{theorem}{Theorem}%  meant for continuous numbers
+%%\newtheorem{theorem}{Theorem}[section]% meant for sectionwise numbers
+%% optional argument [theorem] produces theorem numbering sequence instead of independent numbers for Proposition
+\newtheorem{proposition}[theorem]{Proposition}% 
+%%\newtheorem{proposition}{Proposition}% to get separate numbers for theorem and proposition etc.
+
+\theoremstyle{thmstyletwo}%
+\newtheorem{example}{Example}%
+\newtheorem{remark}{Remark}%
+
+\theoremstyle{thmstylethree}%
+\newtheorem{definition}{Definition}%
+
+\raggedbottom
+%%\unnumbered% uncomment this for unnumbered level heads
+
+\begin{document}
+
+\title[The Phonetic Portmantout]{The Phonetic Portmantout}
+
+\author{\fnm{Kyle A.} \sur{Williams}}\email{kyle.anthony.williams2@gmail.com}
+
+\date{0 April 0x2023}
+
+\abstract{The Oxford Dictionary defines the word \textit{portmanteau} as "a word blending the sounds and combining the meanings of two others." Dr. Tom Murphy VII Ph.D., in his paper "The Portmantout," introduced the idea of a \textit{portmantout} (French portmanteau of \textit{portmanteau} and \textit{out} [all]), the orthographic combination of all words in a language—in his paper English—achieving such using a personal dictionary of approximately 108 thousand words. A glaring issue with the portmantout is that the resulting word is unpronounceable due to Murphy ignoring phonetic grammar. This paper aims to rectify that using a corpus of over 134 thousand pronunciations from the Carnegie Mellon University Pronouncing Dictionary (CMUdict) in order to create a word that can ultimately be said by a text-to-speech bot or a theoretical human with a large lung capacity.}
+
+\keywords{linguistics, graph theory, phonetics}
+
+\maketitle
+
+\section{How to Make a Portmanteau}\label{sec1}
+
+All words, from a phonological perspective, are composed of one or more sounds called \textit{phones} which can be organized into two basic categories: \textit{consonants} and \textit{vowels}. The key to creating a portmanteau is by finding two words with a shared sequence  of phones that contains at least one vowel. Let's use \textit{brogrammer}, an example Murphy gives in his paper to see this in action.
+
+In the ARPAbet, the pronunciation of \textit{bro} is "spelled" \verb|B R OW|  and the pronunciation of \textit{programmer} is spelled \verb| P R OW G R AE M ER|. Both pronunciations share the sequence of phones \verb|R OW|. Therefore, if we replace the \verb|P| in \textit{programmer} with the \verb|B| in \textit{bro}, we get \verb|B R OW G R AE M ER|, a portmanteau.
+
+\subsection{Formalizing and Generalizing}\label{subsec1}
+A \textit{phone} is a is a two-letter ARPAbet code which optionally indicates stress. A \textit{vowel} is a phone whose first letter is in the set $\{"A", "E", "I", "O", "U"\}$ . A pronunciation is a sequence of phones.
+
+For a set of pronunciations \textit{L}, in this case CMUdict, a pronunciation \textit{s} is a \textit{generalized phonetic portmanteau} if the entire pronunciation can be covered by sub-pronunciations in \textit{L}, where a sub-pronunciation contains at least one vowel. A \textit{cover} is defined similarly to the one seen in Murphy, but allows the cutting off of  a pronunciation to enable colloquial portmanteaus like \textit{brogrammer} and \textit{brogrammar}.  For example, the pronunciation \verb|B R OW G R AE M ER M EY D| can be covered by the pronunciations for \textit{bro}, \textit{programmer}, and \textit{mermaid} in \textit{L}, so it is a generalized phonetic portmanteau.  This means that the pronunciation \verb|R EY D AW N| cannot be a generalized phonetic portmanteau, even though it would be a \textit{generalized portmanteau} of the pronunciations of \textit{raid} and \textit{dawn} by Murphy's definition, as they lack a shared sub-sequence that includes a vowel.
+
+A \textit{phonetic portmantout} is a pronunciation made up of sub-pronunciations from all pronunciations in \textit{L}. As in Murphy, sub-pronunciations from a word may show up more than once; it is only necessary that sub-pronunciations from each pronunciation in \textit{L} are present in the phonetic portmantout.
+
+\section{Portmantout Generation}\label{sec2}
+
+Generating the shortest phonetic portmantout is likely NP-complete for the same reasons Murphy's portmantout is. However, I have found some useful strategies for making joining pronunciations much less long.
+
+\subsection{Deduplicating pronunciations}\label{subsec2}
+
+A common kind of generalized phonetic portmantout is where one pronunciation the \textit{prefix} or \textit{suffix} of another pronunciation. For example, the pronunciations of \textit{water} and \textit{melon} are the prefix and suffix of the pronunciation of \textit{watermelon} respectively. A easy-to-implement and fast way to create generalized phonetic portmanteaus from prefixes and suffixes is the \textit{trie}, a kind of tree data structure commonly used in search applications. After inserting all pronunciations into a trie, the phonetic portmanteaus can be found in the tree's leaves, as, for example, the path of nodes that creates the pronunciation for \textit{water} is part of the path of the pronunciation of \textit{watermelon}.  Suffix-based portmanteaus can be found by reversing all pronunciations before inserting them into the trie. Inserting items into a trie takes linear time, which is much faster than the polynomial time it takes to find a portmantout by iterating over all pronunciations in \textit{L}. Through this method, I was able to reduce my initial number of pronunciations from 133,737 to 81,187 in a matter of seconds.
+
+\subsection{Generating particles}\label{subsec2}
+
+The process for generating particles is as follows:
+\begin{itemize}
+    \item Load CMUdict and deduplicate the pronunciations. Save the result to a set \textit{pronunciations}.
+    \item While \textit{pronunciations} is not an empty set:
+    \begin{itemize}
+        \item Take a pronunciation out the set; this will be the base for our \textit{particle}.
+        \item For every \textit{pronunciation} in \textit{pronunciations}:
+        \begin{itemize}
+            \item If \textit{particle} and \textit{pronunciation} can be \textit{joined}, join them together and save the result to particle. Remove \textit{pronunciation} from \textit{pronunciations}. 
+        \end{itemize}
+        \item Emit \textit{particle}.
+    \end{itemize}
+\end{itemize}
+
+Two pronunciations \textit{a} and \textit{b} can be \textit{joined} if one of the following statements is true:
+\begin{itemize}
+    \item \textit{a} is a sub-pronunciation of \textit{b} or vice versa. An example of this is the pair \verb|R EH D| and \verb|D R EH D IH NG|. Note at this point that \textit{a} or \textit{b} must be an \textit{infix} of the other since we already assimilated all prefixes and suffixes.
+    \item If the suffix of \textit{a} is the prefix of \textit{b}, or vice versa, and said suffix-prefix contains at least one vowel.
+\end{itemize}
+
+\subsection{Joining particles}\label{subsec3}
+
+To join particles, I created a directed graph from all pronunciations in \textit{L}, where the nodes are phones and the edges are a phone pointing to the next in its pronunciation. With this, we can use Dijkstra's to find a path between the first vowel of one particle and the last vowel of another and then join them together on that path. Once all particles have been joined, the phonetic portmantout is complete.
+
+\section{The portmantout}\label{sec4}
+
+The phonetic portmantout is 423,041 phones long; there are 853,918 phones in CMUdict, so this is a compression ratio of 2.02:1, which makes the phonetic portmantout adhere to half of the definition of a portmanteau and is more solid than Murphy's portmantout with a ratio of 1.47:1.
+
+\bmhead{Acknowledgments} I would like to thank Peter Nowakoski for advising me on an draft version of this paper and Kiera Reed for encouragement and proofreading. I would also like to thank Jair Santana for reading a draft version of this paper and showing me tries. Finally, thank you to Tom 7 for creating such an awesome paper to riff off of, introducing me to SIGBOVIK, and inspiring me to do research.
+
+\end{document}
